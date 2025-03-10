@@ -4,6 +4,8 @@ import requests
 from datetime import datetime
 import ctypes
 from PIL import Image
+import re
+import json
 
 # Constants for setting wallpaper
 SPI_SETDESKWALLPAPER = 20  # Constant for setting wallpaper
@@ -17,9 +19,12 @@ def download_bing_wallpaper():
     bing_url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"  # API for Bing wallpaper
     response = requests.get(bing_url)
     data = response.json()
-    
+    print(f"Response Data:\n{json.dumps(data, indent=4)}")
+
     # Extract the image URL and metadata from the API response
     image_url = "https://www.bing.com" + data["images"][0]["url"]
+    print(f"Image url: {image_url}")
+    image_url_4k = re.sub(r"_\d+x\d+\.jpg", "_UHD.jpg", image_url)
     start_date = data["images"][0].get("startdate", "No start date available")
     
     # Create filename based on start date (e.g., 20250310.jpg)
@@ -27,7 +32,7 @@ def download_bing_wallpaper():
     file_path = os.path.join(wp_image_folder, filename)
 
     # Download the wallpaper image
-    img_data = requests.get(image_url).content
+    img_data = requests.get(image_url_4k).content
     with open(file_path, 'wb') as f:
         f.write(img_data)
     

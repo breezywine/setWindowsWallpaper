@@ -6,6 +6,8 @@ import shutil
 from PIL import Image, ImageTk
 import requests
 from datetime import datetime
+import re
+import json
 
 # Initialize the main window
 root = tk.Tk()
@@ -45,9 +47,11 @@ def downloadBingWallpaper():
     bing_url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"  # API for Bing wallpaper
     response = requests.get(bing_url)
     data = response.json()
-    
+    print(f"Response Data:\n{json.dumps(data, indent=4)}")
+
     # Extract the image URL and metadata from the API response
     image_url = "https://www.bing.com" + data["images"][0]["url"]
+    image_url_4k = re.sub(r"_\d+x\d+\.jpg", "_UHD.jpg", image_url)
     copyright_info = data["images"][0].get("copyright", "No copyright information available")
     start_date = data["images"][0].get("startdate", "No start date available")
     
@@ -56,7 +60,7 @@ def downloadBingWallpaper():
     file_path = os.path.join(wp_image_folder, filename)
 
     # Download the wallpaper image
-    img_data = requests.get(image_url).content
+    img_data = requests.get(image_url_4k).content
     with open(file_path, 'wb') as f:
         f.write(img_data)
     
