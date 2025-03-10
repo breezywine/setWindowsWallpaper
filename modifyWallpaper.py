@@ -129,6 +129,8 @@ def loadImage():
         print(f"Selected file: {selected_image}")
         previewImage(filepath)  # Preview the selected image
         filename_label.config(text=f"{selected_image_filename}")  # Display only the filename
+        print(f"Image Resolution: {getImageResolution(filepath)}")
+        print(f"File Size: {getFileSize(filepath)} bytes")
         info_label.config(text="No information available")  # Reset information when manually loading image
 
 def getImageResolution(image_path):
