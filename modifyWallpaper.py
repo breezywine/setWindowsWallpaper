@@ -18,7 +18,8 @@ selected_image = None  # Store selected image path
 selected_image_filename = ""  # Store the selected image filename
 
 # Define the folder for Bing Wallpapers
-wp_image_folder = os.path.expandvars(r"%userprofile%\AppData\Local\Microsoft\BingWallpaperApp\WPImages")
+# wp_image_folder = os.path.expandvars(r"%userprofile%\AppData\Local\Microsoft\BingWallpaperApp\WPImages")
+wp_image_folder = os.path.expandvars(r"%userprofile%\Pictures")
 theme_wallpaper_path = os.path.expandvars(r"%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper")
 
 # Create a Frame for Image Preview

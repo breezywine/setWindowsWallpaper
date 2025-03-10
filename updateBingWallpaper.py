@@ -7,7 +7,8 @@ from PIL import Image
 
 # Constants for setting wallpaper
 SPI_SETDESKWALLPAPER = 20  # Constant for setting wallpaper
-wp_image_folder = os.path.expandvars(r"%userprofile%\AppData\Local\Microsoft\BingWallpaperApp\WPImages")
+# wp_image_folder = os.path.expandvars(r"%userprofile%\AppData\Local\Microsoft\BingWallpaperApp\WPImages")
+wp_image_folder = os.path.expandvars(r"%userprofile%\Pictures")
 theme_wallpaper_path = os.path.expandvars(r"%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper")
 
 def download_bing_wallpaper():
